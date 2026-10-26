@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>บักมันม่วง ข้าวเหนียวหมูปิ้ง&ไก่ย่างส้มตำ เตาถ่านสูตรโบราณ</title>
+  <!-- Google Fonts: Mali & Kanit ให้ฟีลลายมือ/ป้ายร้านข้างทาง -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,300;0,400;0,600;0,700;0,900;1,700&family=Mali:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-amber-50 text-stone-800 font-kanit min-h-screen flex flex-col antialiased selection:bg-red-500 selection:text-white">
+
+  <!-- ==================== ผ้าใบกันแดดลายทาง (AWNING) ==================== -->
+  <header class="relative shadow-md z-30">
+    <!-- ชายผ้าใบกันแดด ลายทางแดง-ขาว สลับเหลือง -->
+    <div class="awning-pattern h-10 w-full relative">
+      <div class="awning-scallop"></div>
+    </div>
+
+    <!-- โครงหลังคารถเข็น + หลอดไฟนีออน -->
+    <div class="cart-roof bg-gradient-to-b from-stone-800 to-stone-900 border-b-4 border-amber-600 px-4 py-3 text-white flex flex-wrap items-center justify-between gap-3 shadow-inner">
+      <div class="flex items-center gap-3">
+        <!-- สวิตช์หลอดไฟนีออนหน้ารถเข็น (Interactive Gimmick) -->
+        <button id="neon-toggle" class="flex items-center gap-2 bg-stone-700 hover:bg-stone-600 text-xs px-3 py-1.5 rounded-full border border-stone-500 transition-all shadow">
+          <i data-lucide="lightbulb" class="w-4 h-4 text-yellow-400 fill-yellow-400 transition-transform duration-300"></i>
+          <span id="neon-status">ไฟนีออน: เปิด</span>
+        </button>
+        <span class="text-xs text-amber-300 font-mali hidden sm:inline flex items-center gap-1">
+          <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
+          กำลังย่างร้อนๆ ควันหอมฉุย!
+        </span>
+      </div>
+
+      <div class="flex items-center gap-4 text-xs font-mali">
+        <div class="flex items-center gap-1 text-stone-300">
+          <i data-lucide="map-pin" class="w-4 h-4 text-red-500"></i>
+          <span>พิกัด: หน้าปากซอย 9 (ตรงข้ามวินมอไซค์)</span>
+        </div>
+        <div class="hidden md:flex items-center gap-1 text-amber-200 bg-amber-900/60 px-2 py-0.5 rounded border border-amber-700">
+          <i data-lucide="clock" class="w-3.5 h-3.5"></i>
+          <span>ขายทุกวัน 05:30 - 10:30 น. (หมดแล้วหมดเลย)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ป้ายไวนิลชื่อร้าน สไตล์ป้ายรถเข็นข้างทางสุดคลาสสิก -->
+    <div class="vinyl-banner bg-gradient-to-r from-red-600 via-amber-500 to-red-600 py-4 px-4 text-center border-b-4 border-yellow-300 relative overflow-hidden shadow-lg">
+      <div class="absolute inset-0 bg-yellow-400/10 vinyl-texture"></div>
+      
+      <!-- ดาววิ้งๆ ประดับป้าย -->
+      <span class="absolute left-4 top-2 text-yellow-200 text-2xl animate-bounce">★</span>
+      <span class="absolute right-4 top-2 text-yellow-200 text-2xl animate-bounce" style="animation-delay: 0.5s;">★</span>
+
+      <div class="relative max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="text-left flex items-center gap-3">
+          <div class="w-16 h-16 md:w-20 md:h-20 bg-yellow-300 border-4 border-white rounded-full flex items-center justify-center text-4xl shadow-md rotate-[-6deg] transform hover:rotate-0 transition">
+            🍢
+          </div>
+          <div>
+            <div class="inline-block bg-yellow-300 text-red-800 text-xs font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider mb-0.5 shadow-sm">
+              สูตรเด็ดเตาถ่าน 30 ปี
+            </div>
+            <h1 class="text-2xl sm:text-3xl md:text-5xl font-extrabold text-yellow-100 tracking-tight drop-shadow-[0_3px_2px_rgba(0,0,0,0.8)] stroke-title">
+              บักมันม่วง ข้าวเหนียวหมูปิ้ง&ไก่ย่างส้มตำ
+            </h1>
+            <p class="text-xs md:text-sm text-yellow-100 font-mali font-semibold drop-shadow">
+              หมูหมักนมสดนุ่มลิ้น • ไก่ย่างหนังกรอบเนื้อฉ่ำ • ข้าวเหนียวร้อนๆ ห่อใบตอง แซ่บอีหลี!
+            </p>
+          </div>
+        </div>
+
+        <!-- ป้ายลังกระดาษแปะโปรโมชัน -->
+        <div class="cardboard-tag bg-[#e2b774] text-stone-900 px-3 py-2 rounded shadow-md border-2 border-[#b58b45] rotate-[2deg] text-xs font-mali font-bold flex flex-col items-center">
+          <span class="text-red-700 text-sm">🔥 หมู 10 ไม้ แถมข้าวเหนียว 1 ห่อ! 🔥</span>
+          <span class="text-[11px] text-stone-700">รับสแกนพร้อมเพย์ / สั่งล่วงหน้าไม่ต้องยืนรอ</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== โฆษณาครีเอทีฟสไตล์ FOOD DELIVERY ADS (ตามแบบ Pinterest) ==================== -->
+    <div class="bg-gradient-to-r from-stone-900 via-stone-800 to-amber-950 text-white border-b-4 border-amber-500 py-3 px-4 shadow-md">
+      <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
+        <div class="flex items-center gap-3">
+          <span class="bg-red-600 text-yellow-300 text-[11px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider animate-pulse flex items-center gap-1 shadow">
+            <span>🛵</span> NOW AVAILABLE
+          </span>
+          <span class="text-sm md:text-base font-bold text-amber-200 font-kanit">
+            บักมันม่วง สั่งเดลิเวอรี่ได้แล้ววันนี้! ร้อนๆ ส่งตรงถึงหน้าบ้าน
+          </span>
+        </div>
+
+        <!-- ไอคอนแอปเดลิเวอรี่กดสั่งได้ทันที -->
+        <div class="flex items-center flex-wrap gap-2 text-xs font-bold">
+          <a href="javascript:void(0)" onclick="openDeliveryModal('GrabFood')" class="flex items-center gap-1.5 bg-[#00B14F] hover:bg-[#009e46] text-white px-3 py-1.5 rounded-xl shadow transition transform hover:-translate-y-0.5">
+            <span class="text-sm">🟢</span>
+            <span>GrabFood</span>
+          </a>
+          <a href="javascript:void(0)" onclick="openDeliveryModal('LINE MAN')" class="flex items-center gap-1.5 bg-[#06C755] hover:bg-[#05b34c] text-white px-3 py-1.5 rounded-xl shadow transition transform hover:-translate-y-0.5">
+            <span class="text-sm">🟩</span>
+            <span>LINE MAN</span>
+          </a>
+          <a href="javascript:void(0)" onclick="openDeliveryModal('ShopeeFood')" class="flex items-center gap-1.5 bg-[#EE4D2D] hover:bg-[#d83c1d] text-white px-3 py-1.5 rounded-xl shadow transition transform hover:-translate-y-0.5">
+            <span class="text-sm">🟠</span>
+            <span>ShopeeFood</span>
+          </a>
+          <a href="javascript:void(0)" onclick="openDeliveryModal('Robinhood')" class="flex items-center gap-1.5 bg-[#722789] hover:bg-[#5c1c70] text-white px-3 py-1.5 rounded-xl shadow transition transform hover:-translate-y-0.5">
+            <span class="text-sm">🟣</span>
+            <span>Robinhood</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN CONTENT ==================== -->
+  <main class="flex-1 max-w-6xl w-full mx-auto p-3 sm:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+    <!-- โซนซ้าย: หน้ารถเข็น + เตาถ่าน + รายการเมนู (8 คอลัมน์) -->
+    <section class="lg:col-span-8 flex flex-col gap-6">
+
+      <!-- ==================== CREATIVE AD POSTER (สไตล์ PINTEREST) ==================== -->
+      <div class="creative-ad-card relative rounded-3xl overflow-hidden shadow-2xl border-4 border-amber-400 bg-gradient-to-br from-[#1e1b18] via-[#2d1b0d] to-[#451405] text-white p-5 md:p-7">
+        <!-- ลวดลายพื้นหลังสไตล์ Social Media Ads Graphic -->
+        <div class="absolute -right-12 -top-12 w-48 h-48 bg-amber-500/20 rounded-full blur-2xl pointer-events-none"></div>
+        <div class="absolute -left-12 -bottom-12 w-48 h-48 bg-red-600/20 rounded-full blur-2xl pointer-events-none"></div>
+
+        <div class="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-5 items-center">
+          
+          <!-- ข้อความโฆษณาตัวโตๆ สไตล์ Creative Food Ad -->
+          <div class="md:col-span-7 flex flex-col gap-2">
+            <div class="flex items-center gap-2">
+              <span class="bg-red-600 text-yellow-300 text-[11px] font-black tracking-widest px-2.5 py-0.5 rounded-full uppercase">
+                🔥 SPECIAL PROMOTION
+              </span>
+              <span class="text-xs text-amber-300 font-mali font-bold">
+                สดใหม่ ร้อนๆ ส่งตรงถึงบ้าน
+              </span>
+            </div>
+
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-yellow-300 tracking-tight leading-tight">
+              สั่งบักมันม่วงได้แล้ววันนี้!<br>
+              <span class="text-white">บน GrabFood & LINE MAN</span>
+            </h2>
+
+            <p class="text-xs md:text-sm text-stone-300 font-mali leading-relaxed mt-1">
+              "ไม่ต้องตื่นแต่เช้า ไม่ต้องทนดมควัน ไม่ต้องต่อคิวหน้ารถเข็น" ย่างถ่านแท้ๆ หอมทะลุกล่อง ห่อใบตองรักษาความร้อนถึงมือคุณ
+            </p>
+
+            <!-- โค้ดส่วนลดเดลิเวอรี่ -->
+            <div class="bg-black/40 border border-amber-500/50 rounded-2xl p-3 mt-2 flex items-center justify-between gap-2">
+              <div>
+                <span class="text-[10px] text-amber-400 font-bold block uppercase">CODE ส่วนลดบนแอป</span>
+                <span class="text-base sm:text-lg font-black tracking-wider text-yellow-300 font-kanit">BAKMAN30</span>
+              </div>
+              <div class="text-right">
+                <span class="text-[11px] text-stone-300 font-mali block">ลดทันที 30 บาท</span>
+                <span class="text-[10px] text-emerald-400 font-bold">เมื่อสั่งขั้นต่ำ 150.-</span>
+              </div>
+            </div>
+
+            <!-- ปุ่มสั่งซื้อผ่านแอป -->
+            <div class="flex items-center flex-wrap gap-2 pt-2">
+              <button onclick="openDeliveryModal('GrabFood')" class="bg-[#00B14F] hover:bg-[#008f3f] text-white font-bold text-xs px-3.5 py-2 rounded-xl shadow transition flex items-center gap-1.5 transform hover:scale-105">
+                <span>🟢</span> สั่ง GrabFood
+              </button>
+              <button onclick="openDeliveryModal('LINE MAN')" class="bg-[#06C755] hover:bg-[#049a42] text-white font-bold text-xs px-3.5 py-2 rounded-xl shadow transition flex items-center gap-1.5 transform hover:scale-105">
+                <span>🟩</span> สั่ง LINE MAN
+              </button>
+              <button onclick="openDeliveryModal('ShopeeFood')" class="bg-[#EE4D2D] hover:bg-[#c93c1d] text-white font-bold text-xs px-3.5 py-2 rounded-xl shadow transition flex items-center gap-1.5 transform hover:scale-105">
+                <span>🟠</span> สั่ง ShopeeFood
+              </button>
+            </div>
+          </div>
+
+          <!-- ฝั่งขวา: โปสเตอร์ชุดเซ็ตคอมโบสุดคุ้ม Mockup -->
+          <div class="md:col-span-5 flex flex-col items-center justify-center">
+            <div class="relative bg-gradient-to-t from-black/80 to-stone-800/80 p-4 rounded-2xl border-2 border-amber-500/60 shadow-xl text-center w-full max-w-[280px]">
+              
+              <!-- ป้ายลดราคาเฉียงมุม -->
+              <div class="absolute -top-3 -right-3 bg-red-600 text-yellow-200 text-xs font-black px-3 py-1 rounded-full shadow-lg border-2 border-white rotate-6 animate-pulse">
+                ลด 16%
+              </div>
+
+              <!-- กราฟิกอาหารจัดเซ็ต -->
+              <div class="relative py-3">
+                <div class="text-6xl my-1 filter drop-shadow-[0_10px_10px_rgba(0,0,0,0.7)] transform hover:rotate-6 transition">
+                  🍢🍗🥗
+                </div>
+                <div class="text-3xl -mt-4">
+                  🍚🍚
+                </div>
+              </div>
+
+              <div class="font-bold text-sm text-yellow-300 font-kanit">
+                "เซ็ตบักมันม่วงมหาแซ่บ"
+              </div>
+              <p class="text-[11px] text-stone-300 font-mali mt-0.5">
+                หมูปิ้ง 5 ไม้ + สะโพกไก่ย่าง + ข้าวเหนียว 2 ห่อ + ส้มตำปลาร้า
+              </p>
+
+              <!-- ราคา -->
+              <div class="flex items-center justify-center gap-2 mt-2 pt-2 border-t border-stone-700">
+                <span class="text-xs text-stone-400 line-through">฿190</span>
+                <span class="text-2xl font-black text-amber-400">฿159.-</span>
+              </div>
+
+              <button onclick="addComboToCart()" class="w-full mt-2.5 bg-gradient-to-r from-yellow-400 to-amber-500 hover:from-yellow-500 hover:to-amber-600 text-stone-950 font-black py-2 rounded-xl text-xs shadow-md transition flex items-center justify-center gap-1">
+                <i data-lucide="plus-circle" class="w-4 h-4"></i>
+                <span>หยิบเซ็ตนี้ลงถุงเลย</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- รถเข็นสแตนเลส & เตาถ่านจำลอง (Interactive Grill) -->
+      <div class="stainless-cart bg-gradient-to-b from-stone-200 via-stone-300 to-stone-400 rounded-2xl border-4 border-stone-400 p-4 shadow-xl relative overflow-hidden">
+        <!-- สกรูน็อตสแตนเลสมุมตู้ -->
+        <div class="absolute top-2 left-2 w-3 h-3 rounded-full bg-stone-500 border border-stone-300 shadow-inner"></div>
+        <div class="absolute top-2 right-2 w-3 h-3 rounded-full bg-stone-500 border border-stone-300 shadow-inner"></div>
+        
+        <div class="flex items-center justify-between border-b-2 border-stone-400 pb-2 mb-3">
+          <div class="flex items-center gap-2">
+            <span class="text-xl">🔥</span>
+            <h2 class="font-bold text-stone-800 text-lg md:text-xl flex items-center gap-2">
+              เตาย่างถ่านไม้ธรรมชาติ (กำลังย่าง)
+            </h2>
+          </div>
+          <div class="text-xs bg-red-600 text-white px-3 py-1 rounded-full font-mali font-bold animate-pulse flex items-center gap-1 shadow">
+            <span class="w-2 h-2 rounded-full bg-yellow-300 animate-ping"></span>
+            สดใหม่ ร้อนฉ่า
+          </div>
+        </div>
+
+        <!-- จำลองเตาปิ้งย่าง ตะแกรงเหล็ก + ควันลอย -->
+        <div class="relative bg-stone-900 rounded-xl p-4 border-4 border-stone-700 shadow-inner overflow-hidden min-h-[160px] flex items-center justify-around flex-wrap gap-4 charcoal-glow">
+          <!-- ควันลอย -->
+          <div class="smoke-particle s1"></div>
+          <div class="smoke-particle s2"></div>
+          <div class="smoke-particle s3"></div>
+
+          <!-- ตะแกรงเหล็กย่าง -->
+          <div class="grill-grate absolute inset-0 pointer-events-none opacity-40"></div>
+
+          <!-- ของที่กำลังย่างบนเตา (คลิกเพื่อเพิ่มใส่ตะกร้าได้เลย) -->
+          <div class="grill-item relative z-10 text-center cursor-pointer group" onclick="quickAdd('moo-boran')">
+            <div class="text-4xl filter drop-shadow group-hover:scale-125 transition-transform animate-sizzle">🍢</div>
+            <span class="bg-red-800/90 text-yellow-300 text-xs px-2 py-0.5 rounded-full font-bold border border-yellow-400 group-hover:bg-yellow-400 group-hover:text-red-900 transition">
+              หมูปิ้งโบราณ 10.-
+            </span>
+          </div>
+
+          <div class="grill-item relative z-10 text-center cursor-pointer group" onclick="quickAdd('moo-nomsod')">
+            <div class="text-4xl filter drop-shadow group-hover:scale-125 transition-transform animate-sizzle" style="animation-delay: 0.2s;">🍢</div>
+            <span class="bg-red-800/90 text-yellow-300 text-xs px-2 py-0.5 rounded-full font-bold border border-yellow-400 group-hover:bg-yellow-400 group-hover:text-red-900 transition">
+              หมูปิ้งนมสด 12.-
+            </span>
+          </div>
+
+          <div class="grill-item relative z-10 text-center cursor-pointer group" onclick="quickAdd('chicken-hip')">
+            <div class="text-4xl filter drop-shadow group-hover:scale-125 transition-transform animate-sizzle" style="animation-delay: 0.4s;">🍗</div>
+            <span class="bg-red-800/90 text-yellow-300 text-xs px-2 py-0.5 rounded-full font-bold border border-yellow-400 group-hover:bg-yellow-400 group-hover:text-red-900 transition">
+              สะโพกไก่ย่าง 45.-
+            </span>
+          </div>
+
+          <div class="grill-item relative z-10 text-center cursor-pointer group" onclick="quickAdd('chicken-wing')">
+            <div class="text-4xl filter drop-shadow group-hover:scale-125 transition-transform animate-sizzle" style="animation-delay: 0.3s;">🍗</div>
+            <span class="bg-red-800/90 text-yellow-300 text-xs px-2 py-0.5 rounded-full font-bold border border-yellow-400 group-hover:bg-yellow-400 group-hover:text-red-900 transition">
+              ปีกไก่ย่างไม้ใหญ่ 25.-
+            </span>
+          </div>
+        </div>
+
+        <p class="text-[12px] text-stone-600 font-mali mt-2 text-center">
+          💡 คลิกที่ของบนเตาเพื่อหยิบใส่ถุงได้ทันที! หมักเข้าเนื้อ พลิกเตาตลอดไม่ให้ไหม้
+        </p>
+      </div>
+
+      <!-- หมวดหมู่เมนูสไตล์ป้ายติดหน้ารถเข็น -->
+      <div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none" id="category-tabs">
+        <button onclick="filterCategory('all')" class="category-btn active bg-red-600 text-white px-4 py-2 rounded-xl font-bold text-sm shadow hover:bg-red-700 transition flex items-center gap-1.5 whitespace-nowrap">
+          <span>🍽️</span> ทุกเมนู
+        </button>
+        <button onclick="filterCategory('moo')" class="category-btn bg-white text-stone-700 px-4 py-2 rounded-xl font-bold text-sm shadow hover:bg-red-50 hover:text-red-600 transition flex items-center gap-1.5 whitespace-nowrap">
+          <span>🍢</span> หมูปิ้งเตาถ่าน
+        </button>
+        <button onclick="filterCategory('chicken')" class="category-btn bg-white text-stone-700 px-4 py-2 rounded-xl font-bold text-sm shadow hover:bg-red-50 hover:text-red-600 transition flex items-center gap-1.5 whitespace-nowrap">
+          <span>🍗</span> ไก่ย่างสูตรเด็ด
+        </button>
+        <button onclick="filterCategory('rice-somtum')" class="category-btn bg-white text-stone-700 px-4 py-2 rounded-xl font-bold text-sm shadow hover:bg-red-50 hover:text-red-600 transition flex items-center gap-1.5 whitespace-nowrap">
+          <span>🍚</span> ข้าวเหนียว & ส้มตำ
+        </button>
+        <button onclick="filterCategory('drink')" class="category-btn bg-white text-stone-700 px-4 py-2 rounded-xl font-bold text-sm shadow hover:bg-red-50 hover:text-red-600 transition flex items-center gap-1.5 whitespace-nowrap">
+          <span>🥤</span> เครื่องดื่มเย็น
+        </button>
+      </div>
+
+      <!-- รายการสินค้า (Menu Grid) -->
+      <div id="menu-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <!-- เมนูจะถูก Render จาก JavaScript -->
+      </div>
+    </section>
+
+    <!-- โซนขวา: ตะกร้าสินค้าสไตล์ถุงหิ้ว + ชำระเงิน (4 คอลัมน์) -->
+    <aside class="lg:col-span-4">
+      <div class="sticky top-4 flex flex-col gap-4">
+
+        <!-- กล่องตะกร้าสั่งซื้อ ดีไซน์ถุงหิ้ว / กระติบข้าวเหนียว -->
+        <div class="cart-box bg-white rounded-2xl border-4 border-amber-300 shadow-xl overflow-hidden flex flex-col">
+          <!-- หัวถุง -->
+          <div class="bg-gradient-to-r from-red-600 to-amber-600 p-4 text-white flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <div class="bg-white/20 p-2 rounded-lg">
+                <i data-lucide="shopping-bag" class="w-5 h-5 text-yellow-200"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-base">ถุงสั่งอาหารของคุณ</h3>
+                <p class="text-[11px] text-yellow-100 font-mali" id="cart-item-count">มีของในถุง 0 รายการ</p>
+              </div>
+            </div>
+            <button onclick="clearCart()" class="text-xs text-yellow-200 hover:text-white underline font-mali">
+              เทถุงออก
+            </button>
+          </div>
+
+          <!-- รายการสินค้าในถุง -->
+          <div id="cart-items" class="p-4 max-h-[320px] overflow-y-auto flex flex-col gap-3 divide-y divide-dashed divide-stone-200">
+            <!-- ว่างเปล่า -->
+            <div id="empty-cart-msg" class="py-8 text-center text-stone-400 font-mali">
+              <span class="text-4xl block mb-2">🛍️</span>
+              ยังไม่มีของในถุง<br>กดเลือกหมูปิ้งไก่ย่างได้เลยจ้า!
+            </div>
+          </div>
+
+          <!-- ตัวเลือกเสริมสำหรับออเดอร์ (ระดับความสุก/น้ำจิ้ม) -->
+          <div class="bg-amber-50/80 p-3 border-t border-amber-200 text-xs font-mali space-y-2">
+            <div>
+              <label class="font-bold text-stone-700 block mb-1">🌶️ น้ำจิ้มที่ต้องการ:</label>
+              <select id="sauce-choice" class="w-full bg-white border border-stone-300 rounded-lg px-2 py-1.5 focus:outline-none focus:border-red-500 font-kanit">
+                <option value="แจ่วมะขามเปียก (สูตรเด็ดบักมันม่วง)">แจ่วมะขามเปียก (สูตรเด็ดบักมันม่วง)</option>
+                <option value="น้ำจิ้มไก่หวานโบราณ">น้ำจิ้มไก่หวานโบราณ</option>
+                <option value="รับทั้งสองอย่างเลย">รับทั้งสองอย่างเลย (จัดเต็ม)</option>
+                <option value="ไม่รับน้ำจิ้ม">ไม่รับน้ำจิ้ม (เค็มนัวอยู่แล้ว)</option>
+              </select>
+            </div>
+            <div>
+              <label class="font-bold text-stone-700 block mb-1">🔥 ระดับความเกรียม:</label>
+              <div class="grid grid-cols-2 gap-2">
+                <label class="flex items-center gap-1.5 bg-white p-1.5 rounded-lg border border-stone-200 cursor-pointer">
+                  <input type="radio" name="grill-level" value="เกรียมกำลังดี (หอมกลิ่นไหม้นิดๆ)" checked class="text-red-600 focus:ring-red-500">
+                  <span class="text-[11px]">เกรียมกำลังดี</span>
+                </label>
+                <label class="flex items-center gap-1.5 bg-white p-1.5 rounded-lg border border-stone-200 cursor-pointer">
+                  <input type="radio" name="grill-level" value="ไม่เกรียม (เนื้อนุ่มฉ่ำ)" class="text-red-600 focus:ring-red-500">
+                  <span class="text-[11px]">ไม่เกรียม</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- สรุปยอดเงิน + ปุ่มสั่งซื้อ -->
+          <div class="bg-stone-50 p-4 border-t-2 border-stone-200">
+            <div class="flex justify-between items-center mb-1 text-sm text-stone-600 font-mali">
+              <span>ราคารวมทั้งหมด:</span>
+              <span class="text-xl font-black text-red-600 font-kanit" id="cart-total-price">฿0</span>
+            </div>
+            <p class="text-[11px] text-stone-500 font-mali mb-3 text-right">
+              * ข้าวเหนียว 10 บาท / ห่อใบตองหอมๆ
+            </p>
+
+            <button onclick="openCheckoutModal()" id="checkout-btn" disabled class="w-full bg-gradient-to-r from-red-600 to-amber-600 hover:from-red-700 hover:to-amber-700 disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold py-3 px-4 rounded-xl shadow-lg transition flex items-center justify-center gap-2 text-base">
+              <i data-lucide="check-circle-2" class="w-5 h-5"></i>
+              <span>สั่งซื้อ / สแกนจ่ายเงิน (฿<span id="btn-total">0</span>)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- ป้ายแจ้งเตือนสไตล์ป้ายข้างทาง -->
+        <div class="bg-yellow-100 border-2 border-yellow-400 rounded-xl p-3 text-xs font-mali text-yellow-900 shadow flex items-start gap-2.5">
+          <span class="text-xl">🛵</span>
+          <div>
+            <p class="font-bold">บริการส่งด่วนระแวกใกล้เคียง:</p>
+            <p class="text-[11px] text-yellow-800">
+              สั่งล่วงหน้า 15-20 นาที ย่างให้ใหม่ๆ จากเตา ไม่ค้างคืนแน่นอน!
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </aside>
+
+  </main>
+
+  <!-- ==================== MODAL: สั่งผ่านแอปเดลิเวอรี่ ==================== -->
+  <div id="delivery-platform-modal" class="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-sm w-full p-6 text-center border-4 border-amber-400 shadow-2xl relative">
+      <button onclick="closeDeliveryModal()" class="absolute top-4 right-4 bg-stone-100 hover:bg-stone-200 text-stone-600 p-2 rounded-full transition">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+
+      <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-3 text-3xl">
+        🛵
+      </div>
+      <h3 class="text-xl font-bold text-stone-800">
+        สั่งผ่าน <span id="delivery-platform-name" class="text-red-600">GrabFood</span>
+      </h3>
+      <p id="delivery-platform-desc" class="text-xs text-stone-600 font-mali mt-2 leading-relaxed">
+        กำลังเชื่อมต่อไปยังหน้าร้านบนแอป
+      </p>
+
+      <div class="my-4 bg-amber-50 p-3 rounded-2xl border border-amber-200 text-xs font-mali text-left">
+        <span class="font-bold text-red-600">💡 ทริคประหยัด:</span>
+        <p class="text-[11px] text-stone-600 mt-1">อย่าลืมใส่โค้ดส่วนลด <strong class="text-stone-900 font-mono font-bold bg-yellow-200 px-1 rounded">BAKMAN30</strong> ในหน้าชำระเงินของแอปเพื่อรับส่วนลด 30 บาท!</p>
+      </div>
+
+      <a id="delivery-platform-link" href="#" target="_blank" class="w-full bg-[#00B14F] hover:bg-[#009241] text-white font-bold py-2.5 rounded-xl shadow transition text-center block text-sm">
+        เปิดแอปสั่งเลย 🚀
+      </a>
+      <button onclick="closeDeliveryModal()" class="w-full mt-2 text-stone-400 hover:text-stone-600 text-xs py-1">
+        ไว้สั่งทีหลัง
+      </button>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL: สั่งซื้อและชำระเงิน (CHECKOUT) ==================== -->
+  <div id="checkout-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-3 sm:p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full max-h-[90vh] overflow-y-auto shadow-2xl border-4 border-amber-400 p-5 relative">
+      <!-- ปุ่มปิด -->
+      <button onclick="closeCheckoutModal()" class="absolute top-4 right-4 bg-stone-100 hover:bg-stone-200 text-stone-600 p-2 rounded-full transition">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="text-center pb-3 border-b border-stone-200">
+        <span class="text-3xl">🧾</span>
+        <h3 class="text-xl font-bold text-stone-800">ยืนยันออเดอร์ & ชำระเงิน</h3>
+        <p class="text-xs text-stone-500 font-mali">ร้านบักมันม่วง ข้าวเหนียวหมูปิ้ง&ไก่ย่างส้มตำ</p>
+      </div>
+
+      <!-- สรุปรายการ -->
+      <div class="my-4 bg-amber-50/70 p-3 rounded-xl border border-amber-200 text-xs font-mali space-y-1" id="modal-order-summary">
+        <!-- รายการสั่งจะมาแสดงตรงนี้ -->
+      </div>
+
+      <!-- ฟอร์มข้อมูลลูกค้า -->
+      <form id="order-form" onsubmit="handlePlaceOrder(event)" class="space-y-3 text-sm">
+        <div>
+          <label class="block font-bold text-stone-700 text-xs mb-1">ชื่อผู้สั่ง / เบอร์โทรศัพท์: *</label>
+          <input type="text" id="cust-name" required placeholder="เช่น สมชาย (081-234-5678)" class="w-full border border-stone-300 rounded-lg p-2.5 focus:border-red-500 focus:outline-none">
+        </div>
+
+        <div>
+          <label class="block font-bold text-stone-700 text-xs mb-1">วิธีรับอาหาร: *</label>
+          <div class="grid grid-cols-2 gap-2 text-xs">
+            <label class="flex items-center gap-2 p-2 bg-stone-50 border rounded-lg cursor-pointer hover:border-red-500">
+              <input type="radio" name="pickup-type" value="pickup" checked onchange="toggleAddressField(false)">
+              <span>🛵 มารับเองที่หน้ารถเข็น</span>
+            </label>
+            <label class="flex items-center gap-2 p-2 bg-stone-50 border rounded-lg cursor-pointer hover:border-red-500">
+              <input type="radio" name="pickup-type" value="delivery" onchange="toggleAddressField(true)">
+              <span>📦 ให้มาส่ง (ระแวกใกล้เคียง)</span>
+            </label>
+          </div>
+        </div>
+
+        <div id="address-box" class="hidden">
+          <label class="block font-bold text-stone-700 text-xs mb-1">ที่อยู่จัดส่ง / จุดนัดรับ:</label>
+          <textarea id="cust-address" rows="2" placeholder="เช่น หอพักกรีนวิว ห้อง 302 หรือ วินปากซอย 9" class="w-full border border-stone-300 rounded-lg p-2 text-xs focus:border-red-500 focus:outline-none"></textarea>
+        </div>
+
+        <div>
+          <label class="block font-bold text-stone-700 text-xs mb-1">หมายเหตุเพิ่มเติมถึงร้านบักมันม่วง:</label>
+          <input type="text" id="cust-note" placeholder="เช่น ไม่เอาหนัง, ขอพริกป่นเพิ่ม, แยกถุง" class="w-full border border-stone-300 rounded-lg p-2 text-xs focus:border-red-500 focus:outline-none font-mali">
+        </div>
+
+        <!-- โซนชำระเงิน พร้อมเพย์ QR Code จำลอง -->
+        <div class="bg-gradient-to-b from-blue-900 to-indigo-950 text-white p-4 rounded-2xl shadow border-2 border-blue-400 text-center">
+          <div class="flex items-center justify-center gap-2 text-xs font-bold mb-2 text-blue-200">
+            <span>สแกนจ่ายผ่าน Thai QR PromptPay</span>
+          </div>
+
+          <!-- QR Code Mockup -->
+          <div class="bg-white p-3 rounded-xl inline-block shadow-md">
+            <!-- SVG QR Code จำลอง -->
+            <svg class="w-36 h-36 mx-auto" viewBox="0 0 100 100">
+              <rect width="100" height="100" fill="#ffffff"/>
+              <!-- Corner 1 -->
+              <rect x="5" y="5" width="25" height="25" fill="#000000"/>
+              <rect x="9" y="9" width="17" height="17" fill="#ffffff"/>
+              <rect x="13" y="13" width="9" height="9" fill="#000000"/>
+              <!-- Corner 2 -->
+              <rect x="70" y="5" width="25" height="25" fill="#000000"/>
+              <rect x="74" y="9" width="17" height="17" fill="#ffffff"/>
+              <rect x="78" y="13" width="9" height="9" fill="#000000"/>
+              <!-- Corner 3 -->
+              <rect x="5" y="70" width="25" height="25" fill="#000000"/>
+              <rect x="9" y="74" width="17" height="17" fill="#ffffff"/>
+              <rect x="13" y="78" width="9" height="9" fill="#000000"/>
+              <!-- Data Dots -->
+              <rect x="35" y="10" width="8" height="8" fill="#000000"/>
+              <rect x="50" y="15" width="10" height="6" fill="#000000"/>
+              <rect x="35" y="25" width="25" height="6" fill="#000000"/>
+              <rect x="10" y="35" width="8" height="12" fill="#000000"/>
+              <rect x="25" y="40" width="12" height="12" fill="#000000"/>
+              <rect x="45" y="40" width="15" height="15" fill="#000000"/>
+              <rect x="70" y="35" width="20" height="8" fill="#000000"/>
+              <rect x="65" y="50" width="12" height="12" fill="#000000"/>
+              <rect x="82" y="50" width="10" height="20" fill="#000000"/>
+              <rect x="35" y="65" width="25" height="8" fill="#000000"/>
+              <rect x="40" y="80" width="10" height="12" fill="#000000"/>
+              <rect x="60" y="75" width="15" height="18" fill="#000000"/>
+            </svg>
+            <p class="text-[10px] text-stone-600 font-bold mt-1 font-kanit">PromptPay: 089-999-XXXX (บักมันม่วง)</p>
+          </div>
+
+          <p class="text-sm font-bold mt-2 text-yellow-300">
+            ยอดโอน: <span id="modal-pay-amount" class="text-xl font-black text-white">฿0</span>
+          </p>
+          <p class="text-[11px] text-blue-200 font-mali">
+            * สแกนจ่ายแล้วกดยืนยัน หรือกดส่งเข้า LINE ร้านได้เลย
+          </p>
+        </div>
+
+        <div class="flex flex-col gap-2 pt-2">
+          <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-xl shadow transition flex items-center justify-center gap-2">
+            <i data-lucide="check-check" class="w-5 h-5"></i>
+            <span>ยืนยันสั่งซื้อเรียบร้อย (บันทึกออเดอร์)</span>
+          </button>
+          
+          <button type="button" onclick="sendToLine()" class="w-full bg-[#06C755] hover:bg-[#05b34c] text-white font-bold py-2.5 px-4 rounded-xl shadow transition flex items-center justify-center gap-2 text-xs">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M24 10.3c0-4.6-4.9-8.3-10.9-8.3C7.1 2 2.2 5.7 2.2 10.3c0 4.1 3.9 7.6 9.2 8.2.4.1.9.3 1 .6.1.4 0 .9-.1 1.4-.2.8-.7 3.1-.8 3.3-.1.5.2.5.5.3 2.1-1.3 6.1-3.9 8.3-6.6 2.6-2.1 3.7-4.6 3.7-7.2z"/></svg>
+            <span>ส่งข้อความออเดอร์นี้เข้า LINE ร้านบักมันม่วง</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL: แจ้งเตือนสั่งซื้อสำเร็จ ==================== -->
+  <div id="success-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-sm w-full p-6 text-center border-4 border-emerald-400 shadow-2xl animate-bounce-once">
+      <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-3 text-3xl">
+        🎉
+      </div>
+      <h3 class="text-xl font-bold text-stone-800">บักมันม่วงได้รับออเดอร์แล้ว!</h3>
+      <p class="text-xs text-stone-600 font-mali mt-2">
+        กำลังคีบหมูขึ้นเตาให้อย่างไวเลยเด้อ! รอรับความแซ่บได้เลย!
+      </p>
+      <div class="bg-amber-50 p-3 rounded-xl border border-amber-200 my-4 text-xs font-mali text-left" id="success-order-details">
+      </div>
+      <button onclick="closeSuccessModal()" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2.5 px-4 rounded-xl shadow">
+        สั่งเพิ่มอีกรอบ
+      </button>
+    </div>
+  </div>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="bg-stone-900 border-t-4 border-amber-600 text-stone-300 py-6 px-4 text-center text-xs font-mali mt-12">
+    <div class="max-w-4xl mx-auto space-y-2">
+      <div class="flex items-center justify-center gap-2 text-amber-400 text-base font-bold font-kanit">
+        <span>🍢 บักมันม่วง ข้าวเหนียวหมูปิ้ง&ไก่ย่างส้มตำ เตาถ่านรสเด็ด</span>
+      </div>
+      <p class="text-stone-400">
+        เปิดบริการ 05:30 - 10:30 น. (หยุดทุกวันพระ) • สด สะอาด ทำวันต่อวัน ใช้ไม้ไผ่เหลาใหม่
+      </p>
+      <div class="flex items-center justify-center gap-4 text-stone-400 pt-2 text-[11px]">
+        <span>📞 โทรสั่ง: 089-999-XXXX</span>
+        <span>•</span>
+        <span>💬 LINE ID: @bakmanmuang_mooping</span>
+      </div>
+      <p class="text-stone-500 text-[10px] pt-4 border-t border-stone-800">
+        © 2026 เว็บไซต์ร้านค้ารถเข็นหมูปิ้งไก่ย่างโบราณ - ดีไซน์สไตล์ไทยสตรีทฟู้ดแท้ๆ
+      </p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
